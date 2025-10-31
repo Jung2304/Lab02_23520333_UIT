@@ -1,0 +1,18 @@
+{
+  "name": "jsx-without-react",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "type-check": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "^5.2.8"
+  }
+}
