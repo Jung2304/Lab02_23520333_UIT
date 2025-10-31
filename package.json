@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --emptyOutDir",
+    "build": "vite build --emptyOutDir",
     "type-check": "tsc --noEmit",
     "preview": "vite preview"
   },
