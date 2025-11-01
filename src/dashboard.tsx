@@ -33,10 +33,9 @@ const Dashboard = () => {
           fontWeight: "600",
         }}
       >
-        Dashboard - Car Sales Random
+        Dashboard - Fruits Sales
       </h2>
 
-      {/* --- 3 loại biểu đồ (xếp dọc, không tràn ngang) --- */}
       <div
         style={{
           display: "flex",
@@ -51,10 +50,6 @@ const Dashboard = () => {
 
         <Card title="Line Chart">
           <Chart data={data} type="line" />
-        </Card>
-
-        <Card title="Pie Chart">
-          <Chart data={data} type="pie" />
         </Card>
       </div>
 
