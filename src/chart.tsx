@@ -49,7 +49,6 @@ const Chart = ({ data, type, width = 600, height = 350 }: ChartProps) => {
     }
   }, [data, type]);
 
-  // Render legend dưới canvas
   const renderLegend = () => (
     <div
       style={{
@@ -92,8 +91,6 @@ const Chart = ({ data, type, width = 600, height = 350 }: ChartProps) => {
   );
 };
 
-// ==================== DRAW FUNCTIONS ====================
-
 function drawBarChart(
   ctx: CanvasRenderingContext2D,
   data: DataPoint[],
@@ -108,19 +105,16 @@ function drawBarChart(
     const x = i * (barWidth + 20);
     const y = height - barHeight - 30;
 
-    // Vẽ cột
     ctx.fillStyle = PALETTE[i % PALETTE.length];
     ctx.beginPath();
     ctx.roundRect(x, y, barWidth, barHeight, 6);
     ctx.fill();
 
-    // Giá trị phía trên thanh
     ctx.fillStyle = "#111827";
     ctx.font = "13px Montserrat";
     ctx.textAlign = "center";
     ctx.fillText(d.value.toString(), x + barWidth / 2, y - 6);
 
-    // Nhãn dưới thanh
     ctx.fillStyle = "#374151";
     ctx.font = "13px Montserrat";
     ctx.fillText(d.label, x + barWidth / 2, height - 10);
@@ -136,12 +130,10 @@ function drawLineChart(
   const maxVal = Math.max(...data.map((d) => d.value));
   const gap = width / (data.length - 1);
 
-  // Fill gradient
   const gradient = ctx.createLinearGradient(0, 0, 0, height);
   gradient.addColorStop(0, "rgba(23,190,187,0.25)");
   gradient.addColorStop(1, "rgba(255,255,255,0)");
 
-  // Fill background area
   ctx.beginPath();
   ctx.moveTo(0, height);
   data.forEach((d, i) => {
@@ -155,7 +147,6 @@ function drawLineChart(
   ctx.fillStyle = gradient;
   ctx.fill();
 
-  // Line stroke
   ctx.beginPath();
   ctx.strokeStyle = "#17BEBB";
   ctx.lineWidth = 3;
@@ -167,7 +158,6 @@ function drawLineChart(
   });
   ctx.stroke();
 
-  // Points
   data.forEach((d, i) => {
     const x = i * gap;
     const y = height - (d.value / maxVal) * (height - 80);

@@ -5,16 +5,13 @@ import { Card } from "./component";
 import { Chart } from "./chart";
 
 const Dashboard = () => {
-  // Sinh dữ liệu ngẫu nhiên
   const [getData, setData] = useState(DataService.generate());
 
-  // Nút Refresh sinh dữ liệu mới
   const refresh = () => setData(DataService.generate());
 
   const data = getData();
   console.log("Dashboard rendering", getData());
 
-  // Hàm xử lý hover/out để tránh warning TS7006
   const handleHover = (e: Event) => {
     (e.target as HTMLButtonElement).style.background = "#4338ca";
   };
@@ -39,7 +36,7 @@ const Dashboard = () => {
       <div
         style={{
           display: "flex",
-          flexDirection: "column", // 👈 Xếp dọc
+          flexDirection: "column", 
           gap: "16px",
           marginBottom: "24px",
         }}
@@ -53,7 +50,6 @@ const Dashboard = () => {
         </Card>
       </div>
 
-      {/* --- Nút refresh --- */}
       <div style={{ textAlign: "center" }}>
         <button
           onClick={refresh}

@@ -65,7 +65,6 @@ const TodoApp = () => {
         🧾 Todo Tracker (Dark)
       </h2>
 
-      {/* input + button */}
       <div
         style={{
           display: "flex",
@@ -104,7 +103,6 @@ const TodoApp = () => {
         </button>
       </div>
 
-      {/* stats + filters */}
       <div
         style={{
           display: "flex",

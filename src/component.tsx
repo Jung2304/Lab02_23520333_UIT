@@ -21,7 +21,7 @@ export const Card = ({ title, children }: any) => {
           {title}
         </div>
       )}
-      {/* 👇 PHẢI có dòng này, nếu không Chart sẽ không hiển thị */}
+
       <div>{children}</div>
     </div>
   );

@@ -1,6 +1,3 @@
-// --- MINI HOOK SYSTEM v3.4 (Full stable) ---
-// Có dependency, cleanup, và chạy effect sau render root.
-
 type CleanupFn = (() => void) | void;
 
 let effectStates: any[] = [];
@@ -10,13 +7,11 @@ let pendingEffects: (() => CleanupFn)[] = [];
 let effectIndex = 0;
 let refIndex = 0;
 
-/** Được JSX runtime gọi trước mỗi render component */
 export function resetHooks() {
   effectIndex = 0;
   refIndex = 0;
 }
 
-/** Ghi nhận effect, sẽ chạy sau render */
 export function useEffect(effect: () => CleanupFn, deps?: any[]) {
   const currentIndex = effectIndex;
   const prevDeps = effectStates[currentIndex];
@@ -27,9 +22,7 @@ export function useEffect(effect: () => CleanupFn, deps?: any[]) {
   }
 
   if (hasChanged) {
-    // cleanup cũ
     if (cleanupFns[currentIndex]) cleanupFns[currentIndex]!();
-    // ghi vào hàng đợi để chạy sau render
     pendingEffects.push(() => {
       const cleanup = effect();
       cleanupFns[currentIndex] = cleanup;
@@ -40,7 +33,6 @@ export function useEffect(effect: () => CleanupFn, deps?: any[]) {
   effectIndex++;
 }
 
-/** Tạo ref giữ giá trị qua render */
 export function useRef<T>(initialValue: T | null) {
   const currentIndex = refIndex;
   if (!refStates[currentIndex]) {

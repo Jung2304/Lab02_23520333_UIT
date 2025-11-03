@@ -1,20 +1,19 @@
 export interface DataPoint {
-  label: string; // Hãng xe
-  value: number; // Doanh số bán (số xe)
-  region?: string; // Khu vực (tuỳ chọn)
-  year?: number; // Năm (tuỳ chọn)
+  label: string; 
+  value: number; 
+  region?: string; 
+  year?: number;
 }
 
 export const DataService = {
   generate(): DataPoint[] {
-    const carBrands = ["Toyota", "Honda", "Ford", "BMW", "Tesla", "Hyundai"];
+    const carBrands = ["Apple", "Orange", "Pearl", "Strawberry", "Blueberry", "Blackberry"];
     const regions = ["Asia", "Europe", "America"];
     const year = 2025;
 
-    // Sinh ngẫu nhiên dữ liệu cho từng hãng
     return carBrands.map((brand) => ({
       label: brand,
-      value: Math.floor(Math.random() * 50000) + 10000, // 10k–60k xe
+      value: Math.floor(Math.random() * 50000) + 10000, 
       region: regions[Math.floor(Math.random() * regions.length)],
       year,
     }));

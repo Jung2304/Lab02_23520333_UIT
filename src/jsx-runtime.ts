@@ -1,4 +1,3 @@
-// --- MINI JSX RUNTIME v3.3 (stable) ---
 import { resetHooks, runEffects } from "./hooks";
 
 export interface VNode {
@@ -14,13 +13,11 @@ interface ComponentProps {
 
 type ComponentFunction = (props: ComponentProps) => VNode | string | number;
 
-// ---------- GLOBALS ----------
 let currentRoot: HTMLElement | null = null;
 let currentVNode: VNode | null = null;
 let hookStates: any[] = [];
 let hookIndex = 0;
 
-// ---------- ELEMENT CREATION ----------
 export function createElement(
   type: string | ComponentFunction,
   props: Record<string, any> | null,
@@ -41,10 +38,8 @@ export function createFragment(
   return createElement("fragment", props, ...children);
 }
 
-// ---------- RENDER ----------
 function setProp(el: HTMLElement, key: string, value: any) {
   if (value == null || value === false) return;
-  // ✅ THÊM ĐOẠN NÀY
   if (key === "ref" && typeof value === "object" && "current" in value) {
     value.current = el;
     return;
@@ -101,7 +96,6 @@ export function renderToDOM(vnode: VNode | string | number): Node {
   console.log("renderToDOM:", vnode);
 }
 
-// ---------- MOUNT & RERENDER ----------
 export function mount(vnode: VNode, container: HTMLElement) {
   currentRoot = container;
   currentVNode = vnode;
@@ -109,7 +103,6 @@ export function mount(vnode: VNode, container: HTMLElement) {
   container.innerHTML = "";
   container.appendChild(renderToDOM(vnode));
 
-  // ✅ Đảm bảo useEffect chỉ chạy sau khi DOM đã paint
   setTimeout(() => {
     requestAnimationFrame(() => {
       runEffects();
@@ -123,7 +116,6 @@ function rerender() {
   currentRoot.innerHTML = "";
   currentRoot.appendChild(renderToDOM(currentVNode));
 
-  // ✅ tương tự như trên
   setTimeout(() => {
     requestAnimationFrame(() => {
       runEffects();
@@ -131,19 +123,17 @@ function rerender() {
   }, 0);
 }
 
-// ---------- HOOKS ----------
 export function useState<T>(initialValue: T): [() => T, (v: T) => void] {
   const idx = hookIndex;
 
   if (hookStates[idx] === undefined) {
-    hookStates[idx] = initialValue; // giữ lại giữa các lần render
+    hookStates[idx] = initialValue; 
   }
 
   const get = () => hookStates[idx];
 
   const set = (v: T) => {
     hookStates[idx] = v;
-    // async để tránh re-render lồng
     requestAnimationFrame(rerender);
   };
 
