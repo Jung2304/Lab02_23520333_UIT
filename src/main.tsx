@@ -15,7 +15,7 @@ const App = () => (
         marginBottom: "24px",
       }}
     >
-      Nguyễn Minh Dũng 23520333 - Lab03
+      Nguyễn Minh Dũng 23520333 - Lab04
     </h1>
 
     <Counter initialCount={0} />
