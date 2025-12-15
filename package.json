@@ -6,7 +6,10 @@
     "dev": "vite",
     "build": "vite build --emptyOutDir",
     "type-check": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "analyze": "npm run build && node scripts/analyze-bundle.js",
+    "benchmark": "echo 'Run benchmark.runAll() in browser console'",
+    "clean": "rm -rf dist node_modules/.vite"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

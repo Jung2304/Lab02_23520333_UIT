@@ -1,0 +1,94 @@
+{
+  "timestamp": "2025-12-15T17:00:42.255Z",
+  "totalSize": 112738,
+  "totalSizeFormatted": "110.1 KB",
+  "fileCount": 10,
+  "byType": {
+    ".js": {
+      "count": 4,
+      "size": 23732,
+      "sizeFormatted": "23.18 KB",
+      "percentage": "21.05"
+    },
+    ".map": {
+      "count": 4,
+      "size": 88039,
+      "sizeFormatted": "85.98 KB",
+      "percentage": "78.09"
+    },
+    ".css": {
+      "count": 1,
+      "size": 319,
+      "sizeFormatted": "319 Bytes",
+      "percentage": "0.28"
+    },
+    ".html": {
+      "count": 1,
+      "size": 648,
+      "sizeFormatted": "648 Bytes",
+      "percentage": "0.57"
+    }
+  },
+  "largestFiles": [
+    {
+      "name": "charts-BpA3GPEm.js.map",
+      "size": 45839,
+      "sizeFormatted": "44.76 KB",
+      "percentage": "40.66"
+    },
+    {
+      "name": "components-DD5MIsL-.js.map",
+      "size": 23072,
+      "sizeFormatted": "22.53 KB",
+      "percentage": "20.47"
+    },
+    {
+      "name": "charts-BpA3GPEm.js",
+      "size": 11894,
+      "sizeFormatted": "11.62 KB",
+      "percentage": "10.55"
+    },
+    {
+      "name": "index-Ur5ZPN5p.js.map",
+      "size": 11809,
+      "sizeFormatted": "11.53 KB",
+      "percentage": "10.47"
+    },
+    {
+      "name": "vendor-B5zl8zIZ.js.map",
+      "size": 7319,
+      "sizeFormatted": "7.15 KB",
+      "percentage": "6.49"
+    },
+    {
+      "name": "components-DD5MIsL-.js",
+      "size": 6139,
+      "sizeFormatted": "6 KB",
+      "percentage": "5.45"
+    },
+    {
+      "name": "index-Ur5ZPN5p.js",
+      "size": 4041,
+      "sizeFormatted": "3.95 KB",
+      "percentage": "3.58"
+    },
+    {
+      "name": "vendor-B5zl8zIZ.js",
+      "size": 1658,
+      "sizeFormatted": "1.62 KB",
+      "percentage": "1.47"
+    },
+    {
+      "name": "index.html",
+      "size": 648,
+      "sizeFormatted": "648 Bytes",
+      "percentage": "0.57"
+    },
+    {
+      "name": "index-Cswbteck.css",
+      "size": 319,
+      "sizeFormatted": "319 Bytes",
+      "percentage": "0.28"
+    }
+  ]
+}
