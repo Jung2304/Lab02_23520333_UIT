@@ -7,17 +7,23 @@ interface Todo {
   completed: boolean;
 }
 
+interface InputState {
+  currentValue: string;
+  ref?: HTMLInputElement;
+}
+
 const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [getInput] = useState<any>({ currentValue: "" });
+  const [getInput] = useState<InputState>({ currentValue: "" });
   const [filter, setFilter] = useState<"all" | "active" | "completed">("all");
 
   const handleAdd = () => {
-    const text = (getInput as any).currentValue?.trim() || "";
+    const text = getInput().currentValue?.trim() || "";
     if (!text) return;
     setTodos([...todos(), { id: Date.now(), text, completed: false }]);
-    (getInput as any).currentValue = "";
-    const inputEl = (getInput as any).ref;
+    const inputState = getInput();
+    inputState.currentValue = "";
+    const inputEl = inputState.ref;
     if (inputEl) inputEl.value = "";
   };
 
@@ -75,8 +81,11 @@ const TodoApp = () => {
       >
         <input
           defaultValue=""
-          ref={(el: any) => ((getInput as any).ref = el)}
-          onInput={(e: any) => ((getInput as any).currentValue = e.target.value)}
+          ref={(el: HTMLInputElement) => (getInput().ref = el)}
+          onInput={(e: Event) => {
+            const target = e.target as HTMLInputElement;
+            getInput().currentValue = target.value;
+          }}
           placeholder="Add a task..."
           style={{
             flex: 1,

@@ -3,6 +3,7 @@ import { createElement, mount } from "./jsx-runtime";
 import { Counter } from "./counter";
 import { TodoApp } from "./todo-app";
 import { Dashboard } from "./dashboard";
+import { ComponentsDemo } from "./components-demo";
 import "./style.css";
 
 const App = () => (
@@ -20,6 +21,11 @@ const App = () => (
     <Counter initialCount={0} />
     <TodoApp />
     <Dashboard />
+    
+    {/* Component Library Demo */}
+    <div style={{ marginTop: "40px", paddingTop: "40px", borderTop: "2px solid #e5e7eb" }}>
+      <ComponentsDemo />
+    </div>
   </div>
 );
 

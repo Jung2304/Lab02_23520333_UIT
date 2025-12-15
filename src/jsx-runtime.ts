@@ -40,40 +40,61 @@ export function createFragment(
 
 function setProp(el: HTMLElement, key: string, value: any) {
   if (value == null || value === false) return;
-  if (key === "ref" && typeof value === "object" && "current" in value) {
-    value.current = el;
+  
+  // Feature 1: Refs Support - Handle both object refs and callback refs
+  if (key === "ref") {
+    if (typeof value === "function") {
+      // Callback ref - call function with the element
+      value(el);
+    } else if (typeof value === "object" && "current" in value) {
+      // Object ref - set current property
+      value.current = el;
+    }
     return;
   }
 
+  // Event handling
   if (key.startsWith("on") && typeof value === "function") {
     const eventName = key.slice(2).toLowerCase();
     el.addEventListener(eventName, value as EventListener);
     return;
   }
 
+  // className handling
   if (key === "className") {
     el.setAttribute("class", String(value));
     return;
   }
 
+  // Feature 2: CSS-in-JS Support - Handle both string and object styles
   if (key === "style") {
-    if (typeof value === "string") el.setAttribute("style", value);
-    else if (typeof value === "object") {
+    if (typeof value === "string") {
+      // String style: "color: red; font-size: 14px"
+      el.setAttribute("style", value);
+    } else if (typeof value === "object") {
+      // Object style: {color: 'red', fontSize: '14px'}
+      // Convert camelCase to kebab-case (backgroundColor → background-color)
       const css = Object.entries(value)
-        .map(
-          ([k, v]) =>
-            `${k.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}:${v}`
-        )
+        .map(([k, v]) => {
+          const kebabCase = k.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase());
+          return `${kebabCase}:${v}`;
+        })
         .join(";");
       el.setAttribute("style", css);
     }
     return;
   }
 
+  // Default: set as attribute
   el.setAttribute(key, String(value));
 }
 
-export function renderToDOM(vnode: VNode | string | number): Node {
+export function renderToDOM(vnode: VNode | string | number | null | undefined): Node {
+  // Handle null/undefined - return empty text node
+  if (vnode == null) {
+    return document.createTextNode("");
+  }
+
   if (typeof vnode === "string" || typeof vnode === "number") {
     return document.createTextNode(String(vnode));
   }
@@ -93,7 +114,6 @@ export function renderToDOM(vnode: VNode | string | number): Node {
   for (const [k, v] of Object.entries(vnode.props || {})) setProp(el, k, v);
   vnode.children.forEach((child) => el.appendChild(renderToDOM(child)));
   return el;
-  console.log("renderToDOM:", vnode);
 }
 
 export function mount(vnode: VNode, container: HTMLElement) {

@@ -6,7 +6,7 @@ interface CardProps {
   children?: any;
 }
 
-export const Card = ({ title, children }: any) => {
+export const Card = ({ title, children }: CardProps) => {
   return (
     <div
       style={{
